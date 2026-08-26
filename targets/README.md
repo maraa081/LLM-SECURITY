@@ -17,9 +17,15 @@ sur la machine de Maraa via **LM Studio** (Lemonade Server).
 ## Endpoint
 
 ```
-Base URL : http://localhost:1234/v1
+Base URL : http://localhost:13305/v1   (port par defaut de LM Studio sur la
+                                      machine de Maraa - verifier avec
+                                      /v1/models si le port change)
 API      : OpenAI-compatible (chat/completions)
 ```
+
+Identifiants de modele observes (a verifier avec /v1/models apres chargement) :
+- `unsloth/gemma-4-12b-it-GGUF:Q4_K_M` (Gemma 4 12B, charge par defaut)
+- `Qwen2.5-7B-Instruct-GGUF:Q4_K_M` (cible choisie par Maraa, a charger dans LM Studio)
 
 Alternatives si besoin :
 - Ollama : http://localhost:11434/v1
