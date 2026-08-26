@@ -4,9 +4,8 @@ Attaquer et défendre les LLM : prompt injection, jailbreak, empoisonnement,
 vol de modèle.
 
 Suite logique de [CNN-Handmade](https://github.com/maraa081/CNN-Handmade)
-(attaques adversariales sur un CNN from scratch). C'est le niveau 2 du plan
-AI security : la sécurité des systèmes d'IA appliquée aux grands modèles de
-langage.
+(attaques adversariales sur un CNN from scratch) : la sécurité des systèmes
+d'IA appliquée aux grands modèles de langage.
 
 Objectif : comprendre comment un LLM peut être attaqué (et défendu) en
 testant sur son propre chatbot, comme on a attaqué notre propre CNN.
@@ -17,21 +16,15 @@ expérience tracée, résultats reproductibles.
 
 ## Pourquoi ce repo
 
-1. Compléter le plan AI security (4 niveaux) :
-   - Niveau 1 : adversarial examples sur CNN (FGSM, PGD, transfert, défenses)
-     - fait dans CNN-Handmade
-   - Niveau 2 : attaques LLM (prompt injection, jailbreak) - ce repo
-   - Niveau 3 : empoisonnement et vol de modèle (data poisoning, model stealing)
-   - Niveau 4 : défenses complètes + cartographie MITRE ATLAS
-2. Apprendre sur sa propre cible : le chatbot de Maraa (comme le CNN from
+1. Poursuivre l'apprentissage de la sécurité des modèles, commencé dans
+   CNN-Handmade (attaques adversariales sur un CNN from scratch) : attaques
+   puis défenses, avec les cadres de référence OWASP LLM Top 10 et MITRE ATLAS.
+2. Apprendre sur sa propre cible : le chatbot personnel (comme le CNN from
    scratch, on contrôle tout) + des cibles open source pour la reproductibilité.
-3. Suivre les cadres de référence OWASP LLM Top 10 et MITRE ATLAS, attendus
-   en entretien cyber/IA (objectif : travailler au Japon en sécurité des
-   systèmes d'IA).
 
 ---
 
-## Plan de travail (niveau 2 : attaques LLM)
+## Travail prévu
 
 ### Étape 1 - Comprendre la cible
 
@@ -76,7 +69,7 @@ expérience tracée, résultats reproductibles.
 
 ```
 LLM-SECURITY/
-|-- README.md          <- ce fichier : vue d'ensemble, plan, concepts
+|-- README.md          <- ce fichier : vue d'ensemble, concepts
 |-- docs/
 |   |-- menaces.md     <- le modèle de menace, les cibles, la méthode
 |   |-- owasp-llm-top10.md  <- les 10 risques expliqués et comment on les teste
@@ -149,8 +142,8 @@ est souvent ce qui transforme une injection en incident réel.
 
 ## État d'avancement
 
-- Bases posées (ce README : plan, concepts, structure)
-- Étape 1 : cartographie de la cible (chatbot de Maraa)
+- Bases posées (ce README : objectifs, concepts, structure)
+- Étape 1 : cartographie de la cible (chatbot personnel)
 - Étape 2 : prompt injection
 - Étape 3 : jailbreak
 - Étape 4 : autres risques OWASP
