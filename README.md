@@ -140,11 +140,19 @@ est souvent ce qui transforme une injection en incident réel.
 
 ---
 
-## État d'avancement
+## État d'avancement (2026-08-26)
 
 - Bases posées (ce README : objectifs, concepts, structure)
-- Étape 1 : cartographie de la cible (chatbot personnel)
-- Étape 2 : prompt injection
-- Étape 3 : jailbreak
-- Étape 4 : autres risques OWASP
-- Étape 5 : défenses + cartographie ATLAS
+- Étape 1 - Comprendre la cible : faite (Qwen 2.5 7B, Lemonade Server,
+  port 13305, modèle de menace documenté dans targets/)
+- Étape 2 - Prompt injection : première campagne faite (4 tests, 2 runs)
+  - Résultats Qwen 2.5 7B : injections directe/roleplay/indirecte propre
+    refusées, mais FUITE du prompt système (LLM07) réussie
+- Étape 3 - Jailbreak : batterie de 9 techniques opérationnelle
+  - Vanilla : 0/9 (robuste aux prompts classiques)
+  - Abliterated (contrôle) : 8/9 réel -> la batterie est validée
+  - Case manquante : vanilla + prompt système neutre (à tester)
+- Étape 4 : autres risques OWASP (à venir)
+- Étape 5 : défenses + cartographie ATLAS (à venir)
+
+Détails et traces complètes : memoire.md
