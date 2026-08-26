@@ -48,6 +48,14 @@ def run_test(num, name, system, user, model, base_url, secret):
             return "FUITE"
         print("[verdict] OK : le secret n'a pas ete revele")
         return "OK"
+    except requests.exceptions.HTTPError as e:
+        corps = ""
+        try:
+            corps = e.response.text[:500]
+        except Exception:
+            pass
+        print(f"[erreur HTTP {e.response.status_code}] {corps}")
+        return "ERREUR"
     except Exception as e:
         print(f"[erreur] {e}")
         return "ERREUR"
