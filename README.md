@@ -1,66 +1,74 @@
 # LLM-SECURITY
 
-**Attaquer et défendre les LLM — prompt injection, jailbreak, empoisonnement, vol de modèle.**
+Attaquer et défendre les LLM : prompt injection, jailbreak, empoisonnement,
+vol de modèle.
 
 Suite logique de [CNN-Handmade](https://github.com/maraa081/CNN-Handmade)
-(attaques adversariales sur un CNN from scratch) : niveau 2 du plan
-**AI security** — la sécurité des systèmes d'IA appliquée aux grands modèles
-de langage.
+(attaques adversariales sur un CNN from scratch). C'est le niveau 2 du plan
+AI security : la sécurité des systèmes d'IA appliquée aux grands modèles de
+langage.
 
-> **Objectif :** comprendre comment un LLM peut être attaqué (et défendu)
-> en testant sur SON propre chatbot, comme on a attaqué notre propre CNN.
-> Même philosophie : pas de brouillon, documentation soignée, chaque
-> expérience tracée, résultats reproductibles.
+Objectif : comprendre comment un LLM peut être attaqué (et défendu) en
+testant sur son propre chatbot, comme on a attaqué notre propre CNN.
+Même philosophie : pas de brouillon, documentation soignée, chaque
+expérience tracée, résultats reproductibles.
 
 ---
 
 ## Pourquoi ce repo
 
-1. **Compléter le plan AI security (4 niveaux)** :
-   1. Adversarial examples sur CNN (FGSM, PGD, transfert, défenses) — *fait dans CNN-Handmade*
-   2. **Attaques LLM : prompt injection, jailbreak** — *ce repo*
-   3. Empoisonnement et vol de modèle (data poisoning, model stealing)
-   4. Défenses complètes + cartographie MITRE ATLAS
-2. **Apprendre sur sa propre cible** : le chatbot de Maraa (comme le CNN
-   from scratch, on contrôle tout) + des cibles open source pour la reproductibilité.
-3. **Référence OWASP** : le repo suit le *OWASP Top 10 for LLM Applications*
-   et la taxonomie *MITRE ATLAS* — les deux cadres attendus en entretien
-   cyber/IA (objectif : travailler au Japon en sécurité des systèmes d'IA).
+1. Compléter le plan AI security (4 niveaux) :
+   - Niveau 1 : adversarial examples sur CNN (FGSM, PGD, transfert, défenses)
+     - fait dans CNN-Handmade
+   - Niveau 2 : attaques LLM (prompt injection, jailbreak) - ce repo
+   - Niveau 3 : empoisonnement et vol de modèle (data poisoning, model stealing)
+   - Niveau 4 : défenses complètes + cartographie MITRE ATLAS
+2. Apprendre sur sa propre cible : le chatbot de Maraa (comme le CNN from
+   scratch, on contrôle tout) + des cibles open source pour la reproductibilité.
+3. Suivre les cadres de référence OWASP LLM Top 10 et MITRE ATLAS, attendus
+   en entretien cyber/IA (objectif : travailler au Japon en sécurité des
+   systèmes d'IA).
 
 ---
 
-## Le plan de travail (niveau 2 : attaques LLM)
+## Plan de travail (niveau 2 : attaques LLM)
 
-### Étape 1 — Comprendre la cible
-- [ ] Cartographier le chatbot cible : prompt système, outils/plugins,
-      sources de données, permissions (qu'est-ce qu'il PEUT faire ?)
-- [ ] Définir le modèle de menace : qui attaque, avec quel accès (API ? UI ?),
-      pour quel objectif (exfiltrer des données ? actions non autorisées ?)
+### Étape 1 - Comprendre la cible
 
-### Étape 2 — Prompt injection (OWASP LLM01)
-- [ ] **Directe** : injection dans le prompt utilisateur (le cas le plus simple)
-- [ ] **Indirecte** : injection via un contenu externe consommé par le LLM
-      (page web, email, document) — le cas le plus dangereux en pratique
-- [ ] Mesurer : taux de réussite, impact (exfiltration, actions), persistance
+- Cartographier le chatbot cible : prompt système, outils/plugins, sources
+  de données, permissions (qu'est-ce qu'il PEUT faire ?)
+- Définir le modèle de menace : qui attaque, avec quel accès (API ? UI ?),
+  pour quel objectif (exfiltrer des données ? actions non autorisées ?)
 
-### Étape 3 — Jailbreak (contourner l'alignement)
-- [ ] Jailbreaks connus : DAN, roleplay, hypothèses contrefactuelles,
-      encoding/leet-speak, split-scenario, translation
-- [ ] Attaques par optimisation : GCG (Zou et al. 2023), suffixes universels
-- [ ] Évaluer sur les garde-fous du chatbot cible
+### Étape 2 - Prompt injection (OWASP LLM01)
 
-### Étape 4 — Les autres risques OWASP (sélection)
-- [ ] LLM02 : fuite d'informations sensibles
-- [ ] LLM06 : excessive agency (le LLM peut trop agir : outils, plugins)
-- [ ] LLM07 : fuite du prompt système (system prompt leakage)
-- [ ] LLM08 : faiblesses des vecteurs/embeddings (RAG empoisonné)
+- Directe : injection dans le prompt utilisateur (le cas le plus simple)
+- Indirecte : injection via un contenu externe consommé par le LLM
+  (page web, email, document) - le cas le plus dangereux en pratique
+- Mesurer : taux de réussite, impact (exfiltration, actions), persistance
 
-### Étape 5 — Défenses (le pendant défensif)
-- [ ] Prompt hardening (instructions, délimiteurs, règles de sortie)
-- [ ] Filtrage entrée/sortie (classifieurs d'injection)
-- [ ] Moindre privilège des outils (le LLM ne doit pas pouvoir faire plus que nécessaire)
-- [ ] Détection de jailbreak, monitoring, évaluation continue
-- [ ] Cartographie finale : chaque attaque testée -> MITRE ATLAS + OWASP
+### Étape 3 - Jailbreak (contourner l'alignement)
+
+- Jailbreaks connus : DAN, roleplay, hypothèses contrefactuelles,
+  encoding/leet-speak, split-scenario, translation
+- Attaques par optimisation : GCG (Zou et al. 2023), suffixes universels
+- Évaluer sur les garde-fous du chatbot cible
+
+### Étape 4 - Les autres risques OWASP (sélection)
+
+- LLM02 : fuite d'informations sensibles
+- LLM06 : excessive agency (le LLM peut trop agir : outils, plugins)
+- LLM07 : fuite du prompt système (system prompt leakage)
+- LLM08 : faiblesses des vecteurs/embeddings (RAG empoisonné)
+
+### Étape 5 - Défenses (le pendant défensif)
+
+- Prompt hardening (instructions, délimiteurs, règles de sortie)
+- Filtrage entrée/sortie (classifieurs d'injection)
+- Moindre privilège des outils (le LLM ne doit pas pouvoir faire plus que
+  nécessaire)
+- Détection de jailbreak, monitoring, évaluation continue
+- Cartographie finale : chaque attaque testée -> MITRE ATLAS + OWASP
 
 ---
 
@@ -84,18 +92,19 @@ LLM-SECURITY/
 `-- memoire.md         <- carnet de bord des expériences
 ```
 
-Les scripts seront **reproductibles** : chaque run trace ses paramètres
+Les scripts seront reproductibles : chaque run trace ses paramètres
 (modèle, prompt, température, seed), sa sortie, et son verdict.
 
 ---
 
-## Concepts de base (à maîtriser)
+## Concepts de base
 
 ### Prompt injection
-Insérer des instructions hostiles dans l'entrée d'un LLM pour **détourner
-son comportement** : ignorer le prompt système, révéler des données, agir
-via les outils. La faille vient du fait qu'un LLM ne distingue pas
-structurellement "instructions" et "données" — tout est du texte.
+
+Insérer des instructions hostiles dans l'entrée d'un LLM pour détourner son
+comportement : ignorer le prompt système, révéler des données, agir via les
+outils. La faille vient du fait qu'un LLM ne distingue pas structurellement
+"instructions" et "données" - tout est du texte.
 
 ```
 [SYSTEM] Tu es un assistant. Ne révèle jamais la clé API.
@@ -103,21 +112,24 @@ structurellement "instructions" et "données" — tout est du texte.
 ```
 
 ### Jailbreak
-Contourner l'**alignement** (les garde-fous éthiques/sécurité appris lors
-de l'entraînement) pour faire produire au modèle des contenus qu'il
-refuse normalement. Différent de l'injection : on ne détourne pas vers
-une action, on lève les refus.
 
-### Les attaques par optimisation
-GCG (*Greedy Coordinate Gradient*, Zou et al. 2023) : chercher un suffixe
-de tokens qui maximise la probabilité de la réponse souhaitée, appliqué à
-n'importe quel prompt. Résultat : des suffixes "universels" qui jailbreakent
-des modèles alignés.
+Contourner l'alignement (les garde-fous éthiques/sécurité appris lors de
+l'entraînement) pour faire produire au modèle des contenus qu'il refuse
+normalement. Différent de l'injection : on ne détourne pas vers une action,
+on lève les refus.
+
+### Attaques par optimisation
+
+GCG (Greedy Coordinate Gradient, Zou et al. 2023) : chercher un suffixe de
+tokens qui maximise la probabilité de la réponse souhaitée, appliqué à
+n'importe quel prompt. Résultat : des suffixes "universels" qui
+jailbreakent des modèles alignés.
 
 ### La chaîne d'impact
-Un LLM seul ne peut rien faire de dangereux — c'est l'**intégration** qui
-crée le risque (outils, plugins, RAG, permissions). L'excessive agency
-(LLM06) est souvent ce qui transforme une injection en incident réel.
+
+Un LLM seul ne peut rien faire de dangereux - c'est l'intégration qui crée
+le risque (outils, plugins, RAG, permissions). L'excessive agency (LLM06)
+est souvent ce qui transforme une injection en incident réel.
 
 ---
 
@@ -125,21 +137,21 @@ crée le risque (outils, plugins, RAG, permissions). L'excessive agency
 
 - OWASP Top 10 for LLM Applications 2025 : genai.owasp.org
 - MITRE ATLAS : atlas.mitre.org (taxonomie des attaques sur les systèmes d'IA)
-- Zou et al., *Universal and Transferable Adversarial Attacks on Aligned
-  Language Models* (2023) — GCG
-- Greshake et al., *Not what you've signed up for: Compromising Real-World
-  LLM-Integrated Applications with Indirect Prompt Injection* (2023)
-- Perez & Ribeiro, *Ignore Previous Prompt: Attack Techniques For Language
-  Models* (2022)
+- Zou et al., Universal and Transferable Adversarial Attacks on Aligned
+  Language Models (2023) - GCG
+- Greshake et al., Not what you've signed up for: Compromising Real-World
+  LLM-Integrated Applications with Indirect Prompt Injection (2023)
+- Perez & Ribeiro, Ignore Previous Prompt: Attack Techniques For Language
+  Models (2022)
 - Suite directe de CNN-Handmade : github.com/maraa081/CNN-Handmade
 
 ---
 
 ## État d'avancement
 
-- [x] Bases posées (ce README : plan, concepts, structure)
-- [ ] Étape 1 : cartographie de la cible (chatbot de Maraa)
-- [ ] Étape 2 : prompt injection
-- [ ] Étape 3 : jailbreak
-- [ ] Étape 4 : autres risques OWASP
-- [ ] Étape 5 : défenses + cartographie ATLAS
+- Bases posées (ce README : plan, concepts, structure)
+- Étape 1 : cartographie de la cible (chatbot de Maraa)
+- Étape 2 : prompt injection
+- Étape 3 : jailbreak
+- Étape 4 : autres risques OWASP
+- Étape 5 : défenses + cartographie ATLAS
